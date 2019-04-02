@@ -3,33 +3,57 @@ body, html {
   margin: 0;
 }
 
-.bg {
-  background-image: url("../../website/images/bg.jpg");
-
-  height: 100%; 
-
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+/* Split the screen in half */
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
 }
 
+/* Control the left side */
+.left {
+	background-image: url("../../website/images/bg.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	left: 0;
+}
 
-.bg-text {
-  background-color: rgb(0,0,0);
-  background-color: rgba(139,136,120, 0.8);
-  color: white;
-  font-weight: bold;
-  border: 3px solid #f1f1f1;
+/* Control the right side */
+.right {
+	background-image: url("../../website/images/bg6.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	right: 0;
+}
+
+/* Make anchors inherit color of object */
+a { color: inherit; } 
+
+.fa-gamepad{
+	text-shadow: 0 0 10px #ffffff;
+}
+
+.fa-school{
+	text-shadow: 0 0 10px #ffffff;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
-  width: 20%;
-  height: 10%;
-  padding: 20px;
   text-align: center;
-  border-radius: 25px;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+  width: 150px;
+  border-radius: 50%;
 }
 
 .logo-one{
