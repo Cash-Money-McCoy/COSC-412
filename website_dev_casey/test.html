@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Modern Business - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/modern-business.css" rel="stylesheet">
+  <link href="css/popup.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div id="content-creator">
+  <label>Title</label><br/>
+  <input type="text" placeholder="Title" name="title" id="title" style="width: 100%"><br/>
+  <label>Body</label><br/>
+  <textarea name="body" id="body" rows="5" placeholder="Body Text" style="width: 100%"></textarea><br/>
+  <button id="submit-button">
+    Submit
+  </button>
+	</div>
+
+	<hr/>
+
+	<div id="content">
+	</div>
+	
+</div>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-storage.js"></script>
+	
+	
+	<script src="https://www.gstatic.com/firebasejs/ui/3.6.0/firebase-ui-auth__en.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-database.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/3.6.0/firebase-ui-auth.css" />
+	
+	  <!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+		 https://firebase.google.com/docs/web/setup#config-web-app -->
+
+	<script>
+	  // Your web app's Firebase configuration
+	  var firebaseConfig = {
+		apiKey: "AIzaSyAcqojqKHjzr0qB6Lv4GHgcps0fZ-0Fgbo",
+		authDomain: "cosc-412.firebaseapp.com",
+		databaseURL: "https://cosc-412.firebaseio.com",
+		projectId: "cosc-412",
+		storageBucket: "cosc-412.appspot.com",
+		messagingSenderId: "181251574498",
+		appId: "1:181251574498:web:ee0f28fed7b08fcc"
+	  };
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+	  
+	  var version = 'v4'
+
+ var limit = 5;
+ var count = 0;
+ var trueData = 3;
+ var flag = true;
+var articles = [];
+
+firebase.database().ref('/'+ version  + '/article_group/article_list')
+  .orderByChild('published').limitToLast(limit).startAt(1)
+	.on('child_added', function(data) {
+    
+  	firebase.database().ref('/'+ version  +'/article_group/article/' + data.key)
+      .on('value', function(articleData) {
+      	count ++;
+        articles.push({
+        	id: data.key,
+          published: data.val().published,
+          data: articleData.val()
+        });
+      	articles.sort(function(a, b) {
+          return a.published < b.published
+        });
+        producer();
+      	
+      }, function(err) {
+      	count ++;
+      	showError(err);
+        producer()
+      });
+  }, function(err) {
+    alert(err);
+  })
+  
+function producer() {
+  console.log(count, trueData)
+  if (count === trueData && flag) {
+    for (var i in articles) {
+      createArticle(articles[i].id, articles[i].published, articles[i].data)
+    }
+    flag = false
+  }
+}
+  
+function showError(err) {
+	var el = document.createElement('div');
+  el.innerHTML = err.message
+  document.getElementById('content').appendChild(el)
+}
+  
+function createArticle(id, published, data) {
+  console.log(id)
+	var el = document.createElement('div');
+  var title = document.createElement('h1');
+  var body = document.createElement('p');
+  var byline = document.createElement('span');
+  title.innerHTML = data.title;
+  body.innerHTML = data.body;
+  byline.innerHTML = 'id: ' + id + '<br>Date: '+ new Date(published) +'<hr>';
+  el.appendChild(title)
+  el.appendChild(byline)
+  el.appendChild(body)
+  document.getElementById('content').appendChild(el)
+
+}
+
+var submitButton = document.querySelector('#submit-button');
+var titleText = document.querySelector('#title');
+var bodyText = document.querySelector('#body');
+
+submitButton.addEventListener('click', function(){
+	var title = titleText.value;
+  var body = bodyText.value;
+  var articleRef = version  +'/article_group/';
+  var articleData = {
+  	title: title,
+    body: body,
+    date_edited: firebase.database.ServerValue.TIMESTAMP,
+    uid: 'user1',
+    slug_name: title.replace(/\s/g, '-')
+  };
+  var key = firebase.database().ref(articleRef + 'article').push().key;
+  
+  var updates = {};
+  updates[articleRef + 'article/' + key] = articleData;
+  updates[articleRef + 'article_list/' + key] = {
+    published: firebase.database.ServerValue.TIMESTAMP
+}
+  
+  return firebase.database().ref().update(updates)
+  .then(function(){
+  	alert('Added '+ title);
+  })
+  .catch(function(error) {
+  console.log(error);
+  alert(error.message)
+  });
+  
+});
+	  
+	</script>
+  
+  </div>
+  <!-- /.container -->
+
+</body>
+
+</html>

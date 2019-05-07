@@ -1,0 +1,40 @@
+#popup-box {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    color: #000000;
+    width: 90%;
+    max-width: 600px;
+    padding: 30px;
+    border: 10px solid #343a40;
+    display: none;
+}
+
+#popup-close {
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    cursor: pointer;
+    width: 40px;
+}
+
+#popup-box h1 {
+    margin: 0;
+}
+
+#popup-box form {
+    margin-bottom: 0px;
+}
+
+#popup-box input {
+    padding: 10px;
+    border: 1px solid #333;
+    width: 40%;
+}
+
+#popup-box button {
+    padding: 10px;
+    border: 1px solid #333;
+}
