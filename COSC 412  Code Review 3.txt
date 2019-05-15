@@ -1,0 +1,38 @@
+﻿Casey
+
+
+* Ran into problem where jQuery was breaking the blog login authentication system
+   * https://github.com/Cash-Money-McCoy/COSC-412/commit/c6a570a6b4a83199c0f3b3eb5a4ef3fd770d8dca#diff-349fc863b3c9f9fec8a2dd2cf5a358f0R396
+* Ran into problem where the database system can’t actually count how many entries were in it without first sending all the information to the client, thus blowing up your browser
+   * https://github.com/Cash-Money-McCoy/COSC-412/commit/c6a570a6b4a83199c0f3b3eb5a4ef3fd770d8dca#diff-349fc863b3c9f9fec8a2dd2cf5a358f0R265
+* Ran into problem with PayPal IPN service and sandbox account with returning a call to the website that a payment went through
+   * Scrapped Paypal will use ticketmaster
+* Need to have a call when the IPN payment is returned to send out an email with the ticket
+   * Scrapped Paypal will use ticketmaster
+* Condeplate my life choices
+* Move the blog posts javascript out of the HTML file to a seperate one
+   * https://github.com/Cash-Money-McCoy/COSC-412/commit/d7c38cac5c6db5f4a9e51b778779d4d6680c6d63#diff-b4d87ee68e96123d5ea2b025981c9b3c
+* Need to minimize said javascript file for a faster loadtime
+   * https://github.com/Cash-Money-McCoy/COSC-412/commit/0a5d762517cead4fe3de8db0f19338fda7e22762#diff-88a071a432942fc3c29c4780eca014b0
+* Need to somehow get the count from database on the client for pagination of blog posts
+   * Need to work on roles, this has been pushed back
+
+
+
+
+Nebeyu
+
+
+* Ran into a problem where the html code was not formated. 
+* Need to rename parts of the website that aren’t the company name
+
+
+
+
+
+
+Shamar 
+* The HTML code has a problem with getting the timer to start out at 60 seconds
+* The HTML code also won’t display when the game was over
+* The HTML code also allows negative score value which needs to be fixed
+Counter.Initialize(60);
