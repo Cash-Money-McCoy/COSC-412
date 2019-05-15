@@ -1,0 +1,31 @@
+Standards
+
+
+* Code needs to be formatted and must fit on screen
+* Code variables need to make sense and not be random
+* Comments must be throughout the code explaining what is going on
+   * No single line comments saying “It works”
+* Written config values should be at the top of methods
+* Try to reuse code, if you write it more than once it’s probably inefficient
+
+
+Maintainability
+
+
+* Bugs within the code should be commented at the top of the method / file
+* Code should be easily reusable and modular
+
+
+Performance
+
+
+* Javascript files should be minimized on the site to speed up load times
+* Picture files should be minimized with the highest quality to a 1600x900 resolution, we don’t need to load 9000x9000 high quality images that may crash client browsers
+* Data be persisted on the client to keep load time low
+
+
+Architecture
+
+
+* Javascript should be put into files that are loaded in HTML, try to keep <script> tags in html to a minimum
+* Tab your code, no one likes it when it’s hard to read

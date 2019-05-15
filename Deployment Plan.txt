@@ -1,0 +1,13 @@
+﻿Deployment Plan 
+
+
+Tex Gaming will demo the website to the client in order to assume everything has met the standard. This is also a good time to identify any changes in order to allow the client to be satisfied.
+
+
+The website can be run on any fully functional web server. This will allow the client to see the functionality of the website. Alongside be able to host the functionality of the website. 
+
+
+The website will allow the bugs to be changed and configured as they are discovered. Feedback will be allowed to be submitted in order to have the website to be changed and updated. 
+
+
+In the event of the website crashing or finding a bug big enough to cause issues. The website will be taken off line and configured until the functionality is fixed.
